@@ -11,7 +11,13 @@ export class ClassDirective {
     this._elRef = el;
   }
 
-  @Input('appClass') set backgroundColor(color: string) {
-    this._elRef.nativeElement.style.backgroundColor = color;
+  @Input('appClass') set classNames(classObj: any) {
+    for (let key in classObj) {
+      if (classObj[key]) {
+        this._elRef.nativeElement.classList.add(key);
+      } else {
+        this._elRef.nativeElement.classList.remove(key);
+      }
+    }
   }
 }
