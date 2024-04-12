@@ -7,16 +7,11 @@ import { Directive, ElementRef, Input } from '@angular/core';
 export class ClassDirective {
   private _elRef: ElementRef<HTMLElement>;
 
-  @Input() backgroundColor?: string;
-
   constructor(el: ElementRef) {
     this._elRef = el;
+  }
 
-    // never do this!!
-    setTimeout(() => {
-      if (this.backgroundColor) {
-        this._elRef.nativeElement.style.backgroundColor = this.backgroundColor;
-      }
-    }, 50);
+  @Input() set backgroundColor(color: string) {
+    this._elRef.nativeElement.style.backgroundColor = color;
   }
 }
